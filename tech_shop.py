@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from pymongo import MongoClient
+from pymongo import MongoClient, ASCENDING
 import datetime
 client = MongoClient()
 
@@ -43,3 +43,13 @@ add_products([product1, product2, product3, product4, product5, product6])
 transaction = {"buyer_id": user1["_id"], "product_id": product1["_id"], "date": datetime.utcnow(), "quantity": 2}
 add_transactions([transaction])
 
+# insert index into the users collection
+users_collection.create_index(["name", ASCENDING])
+
+# aggregate to count products per user 
+pipeline = [{"$group": {"id": "$user_id", "total_products": {"$sum": 1}}}]
+aggregated = list(products_collection.aggregate(pipeline))
+for user_stats in aggregated:
+    user_id = user_stats["_id"]
+    total_products = user_stats["total_products"]
+    print(f"user {user_id} has {total_products} products listed")
