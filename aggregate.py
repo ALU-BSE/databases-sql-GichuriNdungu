@@ -1,4 +1,4 @@
-# aggregate.py
+#!/usr/bin/env python3
 
 from pymongo import MongoClient, ASCENDING
 import datetime
@@ -8,7 +8,8 @@ try:
     client = MongoClient(conn_str)
 except Exception:
     print("Error" + Exception)
-db = client['tech_shop_db'] 
+
+db = client['tech_shop'] 
 
 users_collection = db['users']
 products_collection = db['products']
