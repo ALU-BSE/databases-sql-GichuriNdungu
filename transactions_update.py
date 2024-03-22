@@ -17,6 +17,7 @@ products_collection = db['products']
 transactions_collection = db['transactions']
 users = list(users_collection.find())
 products = list(products_collection.find())
+transactions_collection.delete_many({})
 transactions = []
 for _ in range(20):
     buyer = random.choice(users)
