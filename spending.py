@@ -31,3 +31,5 @@ def calculate_user_spending(user_name):
     print(f'{user_name} spent a total of {total_spent}')
 
 spending = calculate_user_spending("Langdon")
+spending2 = calculate_user_spending("Aringarosa")
+spending3 = calculate_user_spending("Teabing")
